@@ -2,11 +2,8 @@
 
 {% block content %}
 
-<header class='site-heading'>
-  <h1>Paperboys</h1>
-</header>
-
 <section class='summary'>
+  <h2>Summary:</h2>
   <p>Total papers delivered: <em class='stats'>{{ total_papers }}</em></p>
   <p>Total payment earned: <em class='stats'>${{ total_earnings }}</em></p>
 </section>
@@ -31,6 +28,7 @@
           <input type="submit" value='Deliver!' class='deliver-button'>
         </div>
       </form>
+      <p><a href="{% url 'paperboy' id=pb.id %}">More details</a></p>
 
     </li>
   {% endfor %}
