@@ -4,8 +4,18 @@ from paperboy.models import Paperboy
 
 def home(request):
     earnings = "{:10.2f}".format(Paperboy.total_earnings())
-    context = {'paperboys': Paperboy.objects.all(), 'total_papers': Paperboy.total_papers(), 'total_earnings': earnings}
-    return HttpResponse(render(request, 'index.html', context))
+    return render(request, 'index.html', {
+        'paperboys': Paperboy.objects.all(), 
+        'total_papers': Paperboy.total_papers(), 
+        'total_earnings': earnings
+    })
+
+def paperboy(request, id):
+    pb = get_object_or_404(Paperboy, id=id)
+
+    return render(request, 'paperboy.html', {
+        'paperboy': pb
+    })
 
 def deliver(request, id):
     pb = get_object_or_404(Paperboy, id=id)
